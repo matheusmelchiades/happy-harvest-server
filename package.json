@@ -1,0 +1,15 @@
+{
+    "name": "happy-harvest-server",
+    "version": "1.0.0",
+    "main": "index.js",
+    "repository": "git@github.com:matheusmelchiades/happy-harvest-server.git",
+    "author": "Matheus Melchiades <matheusmacielmelchiades@hotmail.com>",
+    "license": "MIT",
+    "engines": {
+        "node": "12.x",
+        "yarn": "1.19.x"
+    },
+    "dependencies": {
+        "express": "^4.17.1"
+    }
+}

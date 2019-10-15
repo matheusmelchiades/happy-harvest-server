@@ -1,0 +1,13 @@
+version: '3'
+
+services: 
+  postgres:
+    image: mdillon/postgis 
+    restart: always
+    container_name: happyHarvestDB
+    environment: 
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    ports: 
+      - 5432:5432
