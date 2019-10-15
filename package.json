@@ -10,7 +10,7 @@
     },
     "engines": {
         "node": "12.x",
-        "yarn": "1.19.x"
+        "yarn": "^1.17"
     },
     "dependencies": {
         "express": "^4.17.1"
