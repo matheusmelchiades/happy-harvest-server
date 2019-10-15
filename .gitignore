@@ -64,5 +64,7 @@ typings/
 .next
 
 # db test
-
 *.sqlite
+
+# Tests
+__tests__/coverage

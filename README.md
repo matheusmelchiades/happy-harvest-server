@@ -12,7 +12,7 @@ Application server | Node.js | Express.js
 [X] config eslint
 [X] config prettier
 [X] config sequelize
-[] config jest
+[X] config jest
 [] config logger
 [] create ddl tables
 [] config server and env config
