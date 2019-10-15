@@ -11,8 +11,9 @@ Application server | Node.js | Express.js
 [X] config notifications on slack
 [X] config eslint
 [X] config prettier
-[] config sequelize
+[X] config sequelize
 [] config jest
+[] config logger
 [] create ddl tables
 [] config server and env config
 [] create middlware to load routes
