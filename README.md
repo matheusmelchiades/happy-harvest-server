@@ -14,6 +14,7 @@ Application server | Node.js | Express.js
 [] config sequelize
 [] config jest
 [] create ddl tables
+[] config server and env config
 [] create middlware to load routes
 [] create model and controller to mills
 [] create model and controller to harvests
