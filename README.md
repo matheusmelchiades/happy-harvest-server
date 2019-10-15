@@ -8,6 +8,7 @@ Application server | Node.js | Express.js
 [X] config pm2 deploy
 [X] config dockerDB in Aws
 [X] config CircleCI
+[X] config notifications on slack
 [] config eslint
 [] config prettier
 [] config sequelize
