@@ -6,8 +6,8 @@ Application server | Node.js | Express.js
 
 [X] config docker postGis
 [X] config pm2 deploy
-[] config dockerDB in Aws
-[] config CircleCI
+[X] config dockerDB in Aws
+[X] config CircleCI
 [] config eslint
 [] config prettier
 [] config sequelize

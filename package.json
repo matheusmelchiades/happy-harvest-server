@@ -5,6 +5,9 @@
     "repository": "git@github.com:matheusmelchiades/happy-harvest-server.git",
     "author": "Matheus Melchiades <matheusmacielmelchiades@hotmail.com>",
     "license": "MIT",
+    "scripts": {
+        "test": "echo 'RUN TEST'"
+    },
     "engines": {
         "node": "12.x",
         "yarn": "1.19.x"
