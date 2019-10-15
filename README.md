@@ -5,7 +5,7 @@ Application server | Node.js | Express.js
 # TODO
 
 [X] config docker postGis
-[] config pm2 deploy
+[X] config pm2 deploy
 [] config dockerDB in Aws
 [] config CircleCI
 [] config eslint
