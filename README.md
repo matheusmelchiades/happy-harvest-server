@@ -9,8 +9,8 @@ Application server | Node.js | Express.js
 [X] config dockerDB in Aws
 [X] config CircleCI
 [X] config notifications on slack
-[] config eslint
-[] config prettier
+[X] config eslint
+[X] config prettier
 [] config sequelize
 [] config jest
 [] create ddl tables

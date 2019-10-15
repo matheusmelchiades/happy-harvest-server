@@ -4,9 +4,8 @@
         "es6": true,
         "node": true
     },
-    "extends": [
-        "standard"
-    ],
+    "extends": ["standard", "prettier"],
+    "plugins": ["prettier"],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
@@ -15,5 +14,6 @@
         "ecmaVersion": 2018
     },
     "rules": {
+        "prettier/prettier": "error"
     }
 }
