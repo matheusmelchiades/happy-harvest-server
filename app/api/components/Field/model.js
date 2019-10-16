@@ -1,8 +1,5 @@
 const db = global.database;
-const schema = require('./schema');
-const model = db.model('field', schema, schema.options);
-
-const projection = ['id', 'latitude', 'longitude', 'farmId'];
+const { schema, options } = require('./schema');
+const model = db.model('field', schema, options);
 
 module.exports = model;
-module.exports.projection = projection;

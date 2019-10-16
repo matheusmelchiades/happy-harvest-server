@@ -1,3 +1,5 @@
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
 const express = require('express');
 const database = require('./database/dbfactory');
 const config = require('../config/api');
@@ -6,7 +8,6 @@ const middlewares = require('./middlewares');
 const logger = require('./logger')();
 const app = express();
 
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 function loaders() {
     middlewares.load(app);

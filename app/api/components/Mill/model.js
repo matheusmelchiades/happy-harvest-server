@@ -1,8 +1,6 @@
 const db = global.database;
-const schema = require('./schema');
-const model = db.model('mill', schema, schema.options);
+const { schema, options } = require('./schema');
 
-const projection = ['id', 'name'];
+const model = db.model('mill', schema, options);
 
 module.exports = model;
-module.exports.projection = projection;
