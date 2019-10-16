@@ -1,9 +1,9 @@
+const handler = require('./handler');
+
 module.exports = [
     {
         method: 'GET',
         path: '/mill',
-        handler: (req, res) => {
-            return res.send({ status: 'RUNNING MILL' });
-        }
+        handler: handler.findAll
     }
 ];

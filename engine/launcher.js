@@ -1,21 +1,41 @@
 const express = require('express');
+const database = require('./database/dbfactory');
 const config = require('../config/api');
 const routes = require('./routes');
 const middlewares = require('./middlewares');
-const database = require('./database/dbfactory');
 const logger = require('./logger')();
 const app = express();
 
-middlewares.load(app);
-routes.load(app);
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-exports.app = app;
+function loaders() {
+    middlewares.load(app);
+    routes.load(app);
+}
+
+exports.initalize = () => {
+    loaders();
+
+    return app;
+};
 
 exports.run = async () => {
-    await database.createConnection();
+    try {
+        await database.createConnection();
 
-    app.listen(config.port, () => {
+        logger.info('#### INIT LOAD MIDDLEWARES ####');
+
+        await loaders();
+
+        logger.info('#### FINALIZED LOAD MIDDLEWARES ####');
+
+        await app.listen(config.port);
+
         logger.info('🌎 SERVER RUNNING');
         logger.info(`http://${config.hostname}:${config.port}`);
-    });
+    } catch (err) {
+        logger.error(` : : ${err.message} : :`);
+
+        process.exit(0);
+    }
 };

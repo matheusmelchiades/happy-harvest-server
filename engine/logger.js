@@ -6,7 +6,6 @@ const config = require('../config/logger');
 let rotatingLogger = null;
 
 module.exports = () => {
-    console.log('CHAMo');
     const { options } = config.core_logging;
 
     // create log folder

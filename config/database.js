@@ -2,6 +2,8 @@ require('dotenv').config({
     path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env'
 });
 
+global.database = {};
+
 module.exports = {
     host: process.env.DB_HOSTNAME || 'localhost',
     username: process.env.DB_USERNAME || 'admin',
@@ -11,7 +13,7 @@ module.exports = {
     storage: `${process.cwd()}/__tests__/database.sqlite`,
     logging: false,
     define: {
-        timestamps: true,
+        timestamps: false,
         underscored: true,
         underscoredAll: true
     }
