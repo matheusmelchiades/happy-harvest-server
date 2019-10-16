@@ -8,7 +8,6 @@ const middlewares = require('./middlewares');
 const logger = require('./logger')();
 const app = express();
 
-
 function loaders() {
     middlewares.load(app);
     routes.load(app);
