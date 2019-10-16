@@ -1,8 +1,6 @@
 const DataTypes = global.database.dataTypes;
 
-const TABLE_NAME = 'FARMS';
-
-exports = {
+const schema = {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true
@@ -11,6 +9,8 @@ exports = {
     harvestId: DataTypes.INTEGER
 };
 
-exports.options = {
-    tableName: TABLE_NAME
+const options = {
+    tableName: 'farms'
 };
+
+module.exports = { schema, options };

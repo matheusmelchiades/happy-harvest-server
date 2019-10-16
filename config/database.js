@@ -11,10 +11,10 @@ module.exports = {
     database: process.env.DB_NAME || 'db',
     dialect: process.env.DB_DIALECT || 'postgres',
     storage: `${process.cwd()}/__tests__/database.sqlite`,
-    logging: false,
+    logging: process.env.NODE_ENV === 'development',
     define: {
         timestamps: false,
-        underscored: true,
-        underscoredAll: true
+        underscored: false,
+        underscoredAll: false
     }
 };

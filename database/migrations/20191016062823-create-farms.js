@@ -1,4 +1,4 @@
-const TABLE_NAME = 'FARMS';
+const TABLE_NAME = 'farms';
 
 module.exports = {
     up: (queryInterface, Sequelize) => {
@@ -14,14 +14,6 @@ module.exports = {
             },
             harvestId: {
                 type: Sequelize.INTEGER
-            },
-            createdAt: {
-                allowNull: false,
-                type: Sequelize.DATE
-            },
-            updatedAt: {
-                allowNull: false,
-                type: Sequelize.DATE
             }
         });
     },

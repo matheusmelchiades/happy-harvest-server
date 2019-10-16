@@ -8,7 +8,9 @@
     "scripts": {
         "dev": "yarn nodemon server.js",
         "start": "node server.js",
-        "test": "yarn run lint && jest",
+        "pretest": "NODE_ENV=test sequelize db:migrate",
+        "test": "jest",
+        "posttest": "NODE_ENV=test sequelize db:migrate:undo:all",
         "lint": "eslint --fix ."
     },
     "engines": {
@@ -38,6 +40,8 @@
         "eslint-plugin-prettier": "^3.1.1",
         "eslint-plugin-promise": "^4.2.1",
         "eslint-plugin-standard": "^4.0.1",
+        "factory-girl": "^5.0.4",
+        "faker": "^4.1.0",
         "jest": "^24.9.0",
         "nodemon": "^1.19.4",
         "prettier": "^1.18.2",

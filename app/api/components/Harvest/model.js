@@ -1,8 +1,5 @@
 const db = global.database;
-const schema = require('./schema');
-const model = db.model('harvest', schema, schema.options);
-
-const projection = ['id', 'startDate', 'endDate', 'millId'];
+const { schema, options } = require('./schema');
+const model = db.model('harvest', schema, options);
 
 module.exports = model;
-module.exports.projection = projection;

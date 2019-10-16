@@ -1,4 +1,4 @@
-const TABLE_NAME = 'MILLS';
+const TABLE_NAME = 'mills';
 
 module.exports = {
     up: (queryInterface, Sequelize) => {
@@ -10,8 +10,7 @@ module.exports = {
                 primaryKey: true
             },
             name: {
-                type: Sequelize.STRING,
-                allowNull: false
+                type: Sequelize.STRING
             }
         });
     },

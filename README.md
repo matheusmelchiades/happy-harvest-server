@@ -17,7 +17,8 @@ Application server | Node.js | Express.js
 [X] config server and env config
 [X] create middlware to load routes
 [X] config logger
-[] create model and controller to mills
-[] create model and controller to harvests
-[] create model and controller to farms
-[] create model and controller to fields
+[X] create model and controller to mills
+[X] create model and controller to harvests
+[X] create model and controller to farms
+[X] create model and controller to fields
+[] build factorys to tests
