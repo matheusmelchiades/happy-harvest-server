@@ -4,7 +4,7 @@ jobs:
   build:
     docker:
       - image: circleci/node:12.11.0
-
+      
     working_directory: ~/repo
     steps:
       - checkout
@@ -20,4 +20,4 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      - run: yarn test
+      - run: DB_DIALECT=sqlite yarn test
