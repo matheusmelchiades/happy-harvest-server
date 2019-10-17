@@ -2,8 +2,8 @@ const handler = require('./handler');
 
 module.exports = [
     {
-        method: 'GET',
+        method: 'POST',
         path: '/mill',
-        handler: handler.findAll
+        handler: handler.create
     }
 ];

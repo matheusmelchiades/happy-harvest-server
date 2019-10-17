@@ -22,7 +22,7 @@ class SequelizeHandler {
         return this.db.close();
     }
 
-    model(name = '', schema = {}, options = {}) {
+    defineModel(name = '', schema = {}, options = {}) {
         this.models[name] = this.db.define(name, schema, { ...options, modelName: name });
 
         return this.models[name];

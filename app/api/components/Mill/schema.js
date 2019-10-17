@@ -3,9 +3,9 @@ const DataTypes = global.database.dataTypes;
 const schema = {
     id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        primaryKey: true,
         autoIncrement: true,
-        primaryKey: true
+        allowNull: false
     },
     name: {
         type: DataTypes.STRING,

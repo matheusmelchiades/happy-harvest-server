@@ -6,14 +6,14 @@
 DROP TABLE IF EXISTS "mills";
 CREATE TABLE "mills"
 (
-  "id"   INTEGER PRIMARY KEY,
+  "id"   SERIAL NOT NULL PRIMARY KEY,
   "name" VARCHAR
 );
 
 DROP TABLE IF EXISTS "harvests";
 CREATE TABLE "harvests"
 (
-  "id"        INTEGER PRIMARY KEY,
+  "id"        SERIAL NOT NULL PRIMARY KEY
   "startDate" DATE,
   "endDate"   DATE,
   "millId"    INTEGER
@@ -22,7 +22,7 @@ CREATE TABLE "harvests"
 DROP TABLE IF EXISTS "farms";
 CREATE TABLE "farms"
 (
-  "id"        INTEGER PRIMARY KEY,
+  "id"        SERIAL NOT NULL PRIMARY KEY
   "name"      VARCHAR,
   "harvestId" INTEGER
 );
@@ -30,7 +30,7 @@ CREATE TABLE "farms"
 DROP TABLE IF EXISTS "fields";
 CREATE TABLE "fields"
 (
-  "id"        INTEGER PRIMARY KEY,
+  "id"        SERIAL NOT NULL PRIMARY KEY
   "latitude"  FLOAT,
   "longitude" FLOAT,
   "farmId"    INTEGER

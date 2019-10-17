@@ -8,7 +8,7 @@
     "scripts": {
         "dev": "yarn nodemon server.js",
         "start": "node server.js",
-        "pretest": "yarn run lint && NODE_ENV=test sequelize db:migrate",
+        "pretest": "NODE_ENV=test sequelize db:migrate",
         "test": "jest",
         "posttest": "NODE_ENV=test sequelize db:migrate:undo:all",
         "lint": "eslint --fix ."
@@ -22,6 +22,7 @@
         "cors": "^2.8.5",
         "dotenv": "^8.1.0",
         "express": "^4.17.1",
+        "express-boom": "^3.0.0",
         "glob": "^7.1.4",
         "morgan": "^1.9.1",
         "pg": "^7.12.1",
@@ -45,6 +46,7 @@
         "jest": "^24.9.0",
         "nodemon": "^1.19.4",
         "prettier": "^1.18.2",
-        "sequelize-cli": "^5.5.1"
+        "sequelize-cli": "^5.5.1",
+        "supertest": "^4.0.2"
     }
 }
