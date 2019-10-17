@@ -23,12 +23,12 @@ Application server | Node.js | Express.js
 - [X] create model and controller to fields
 - [X] build factorys to tests
 - [X] create Mill
-- [] create Harvest 
-- [] create Farm
-- [] create Field 
-- [] filter by name to mill
-- [] filter harvest startDate
-- [] filter harvest endDate
-- [] filter id and name farm
-- [] filter id field
-- [] create police to routes check fields
+- [ ] create Harvest 
+- [ ] create Farm
+- [ ] create Field 
+- [ ] filter by name to mill
+- [ ] filter harvest startDate
+- [ ] filter harvest endDate
+- [ ] filter id and name farm
+- [ ] filter id field
+- [ ] create police to routes check fields
