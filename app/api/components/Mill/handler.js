@@ -1,19 +1,20 @@
-const logger = require('../../../../engine/logger')();
 const model = require('./model');
+const errors = require('../../../../helper/handlerErrors');
+const logger = require('../../../../engine/logger')();
 
 module.exports.create = async (req, res) => {
     try {
         const { name } = req.body;
 
-        if (!name) return res.boom.notAcceptable('Invalid request, The field "name" is missing');
+        if (!name) return res.boom.notAcceptable(errors.missingField('name'));
+        if (!name.trim()) return res.boom.badData(errors.emptyValue('name'));
 
-        const mills = await model.create({ name });
+        const millDb = await model.create({ name });
 
-        if (!mills) return res.boom.badRequest('Error, could not created');
-
-        return res.send(mills);
+        return res.json(millDb);
     } catch (err) {
-        logger.error(`#### ERROR :: ${err.message} :: ####`);
-        return res.boom.badRequest(err.message);
+        logger.error(err);
+
+        return res.boom.badImplementation(errors.create('mill'));
     }
 };
