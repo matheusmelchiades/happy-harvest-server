@@ -1,6 +1,6 @@
 const request = require('supertest');
 const database = require('../../engine/database/dbfactory');
-const errors = require('../../helper/handlerErrors');
+const handlerErrors = require('../../helper/handlerErrors');
 
 describe('Mill', () => {
     let app;
@@ -40,18 +40,8 @@ describe('Mill', () => {
             .post('/mill')
             .send(mill);
 
-        expect(response.status).toBe(406);
-        expect(response.body.message).toBe(errors.missingField('name'));
-    });
-
-    it('It should receive error if send content request data invalid', async () => {
-        const mill = { name: '              ' };
-
-        const response = await request(app)
-            .post('/mill')
-            .send(mill);
-
         expect(response.status).toBe(422);
-        expect(response.body.message).toBe(errors.emptyValue('name'));
+        expect(response.body).toHaveProperty('message');
+        expect(response.body.message).toBe(handlerErrors.invalidParam());
     });
 });

@@ -1,5 +1,8 @@
-module.exports.missingField = field => `The field '${field}' is missing`;
+module.exports.invalidParam = (...fields) =>
+    `The ${fields.length ? fields.map(field => `'${field}'`).join() : 'params'} has invalid value`;
 
-module.exports.create = objectName => `couldn't create a new '${objectName}'`;
-
-module.exports.emptyValue = (...fields) => `The ${fields.map(field => `'${field}'`).join()} not allow empty string`;
+module.exports.errorRouter = (message, route = {}) =>
+    `======================================\n` +
+    `==  ${message}\n` +
+    `==  ${JSON.stringify(route)}` +
+    `======================================`;
