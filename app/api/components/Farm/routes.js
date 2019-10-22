@@ -1,9 +1,21 @@
 const handler = require('./handler');
+const { check } = require('express-validator');
 
 module.exports = [
     {
-        method: 'GET',
+        method: 'POSt',
         path: '/farm',
-        handler: handler.findAll
+        handler: handler.create,
+        validations: [
+            check('name')
+                .isString()
+                .trim()
+                .not()
+                .isEmpty(),
+            check('harvestId')
+                .isInt()
+                .not()
+                .isEmpty()
+        ]
     }
 ];

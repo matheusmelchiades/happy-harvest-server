@@ -83,7 +83,7 @@ describe('Harvest', () => {
         const response = await request(app)
             .post('/harvest')
             .send(harvest);
-            
+
         expect(response.status).toBe(422);
         expect(response.body).toHaveProperty('message');
     });

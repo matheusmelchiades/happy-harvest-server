@@ -9,7 +9,7 @@ exports.create = async (req, res) => {
 
         const millDb = await modelMill.findOne({ where: { id: millId } });
 
-        if (!millDb) return res.boom.badData('The mill not exists');
+        if (!millDb) return res.boom.badData(`The mill with id ${millId} not exists`);
 
         const harvestDb = await model.create({ millId, ...harvest });
 
