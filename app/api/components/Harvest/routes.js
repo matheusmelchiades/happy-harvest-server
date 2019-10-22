@@ -1,9 +1,26 @@
 const handler = require('./handler');
+const { check } = require('express-validator');
 
 module.exports = [
     {
-        method: 'GET',
+        method: 'POST',
         path: '/harvest',
-        handler: handler.findAll
+        handler: handler.create,
+        validations: [
+            check('startDate')
+                .not()
+                .isEmpty()
+                .isISO8601()
+                .trim(),
+
+            check('endDate')
+                .isISO8601()
+                .trim(),
+
+            check('millId')
+                .isInt()
+                .not()
+                .isEmpty()
+        ]
     }
 ];

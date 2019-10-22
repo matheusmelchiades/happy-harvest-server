@@ -4,16 +4,16 @@ module.exports = {
     up: (queryInterface, Sequelize) => {
         return queryInterface.createTable(TABLE_NAME, {
             id: {
-                allowNull: false,
-                autoIncrement: true,
+                type: Sequelize.INTEGER,
                 primaryKey: true,
-                type: Sequelize.INTEGER
+                autoIncrement: true,
+                allowNull: false
             },
             startDate: {
-                type: Sequelize.STRING
+                type: Sequelize.DATE
             },
             endDate: {
-                type: Sequelize.STRING
+                type: Sequelize.DATE
             },
             millId: {
                 type: Sequelize.INTEGER

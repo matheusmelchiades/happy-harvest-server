@@ -4,9 +4,7 @@ const logger = require('../../../../engine/logger')();
 
 module.exports.create = async (req, res) => {
     try {
-        const { name } = req.body;
-
-        const millDb = await model.create({ name });
+        const millDb = await model.create(req.body);
 
         return res.json(millDb);
     } catch (err) {

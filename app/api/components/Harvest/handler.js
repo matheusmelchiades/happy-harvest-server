@@ -1,7 +1,22 @@
 const model = require('./model');
+const modelMill = require('../Mill/model');
+const handlerErrors = require('../../../../helper/handlerErrors');
+const logger = require('../../../../engine/logger')();
 
-exports.findAll = async (req, res) => {
-    const harvests = await model.findAll({ attributes: model.projection });
+exports.create = async (req, res) => {
+    try {
+        const { millId, ...harvest } = req.body;
 
-    return res.send(harvests);
+        const millDb = await modelMill.findOne({ where: { id: millId } });
+
+        if (!millDb) return res.boom.badData('The mill not exists');
+
+        const harvestDb = await model.create({ millId, ...harvest });
+
+        return res.json(harvestDb);
+    } catch (err) {
+        logger.error(err);
+
+        return res.boom.badImplementation(handlerErrors.create('harvest'));
+    }
 };

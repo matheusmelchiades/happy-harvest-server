@@ -1,12 +1,11 @@
 const Sequelize = require('sequelize');
-const DataTypes = require('./DataTypeHandler');
 
 class SequelizeHandler {
     constructor(dbconfig) {
         this.db = {};
         this.config = dbconfig;
         this.models = {};
-        this.dataTypes = DataTypes;
+        this.dataTypes = Sequelize.DataTypes;
         this.operator = Sequelize.Op;
     }
 

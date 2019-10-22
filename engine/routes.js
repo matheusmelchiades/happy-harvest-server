@@ -52,9 +52,23 @@ function validateValidations(validations) {
 
         const errors = expressValidator.validationResult(req);
 
-        if (errors.isEmpty()) return next();
+        if (!errors.isEmpty()) {
+            const unique = (prev, next) => {
+                const exists = err => err.param === next.param;
 
-        return res.boom.badData(handlerError.invalidParam(), { data: errors.array() });
+                if (!prev.some(exists)) {
+                    return [...prev, next];
+                }
+
+                return prev;
+            };
+
+            const dataErrors = errors.array().reduce(unique, []);
+
+            return res.boom.badData(handlerError.invalidParam(), { errors: dataErrors });
+        }
+
+        return next();
     };
 }
 
@@ -80,7 +94,7 @@ function validateRoute(route) {
 
         return true;
     } catch (err) {
-        handlerError.errorRouter(err.message, route);
+        console.log(handlerError.errorRouter(err.message, route));
         process.exit(0);
     }
 }
