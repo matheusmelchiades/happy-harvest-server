@@ -10,9 +10,6 @@ describe('Farm', () => {
 
         app = require('../../engine/launcher').initalize();
         factory = require('../factory');
-    });
-
-    afterEach(async () => {
         await global.database.truncate();
     });
 
