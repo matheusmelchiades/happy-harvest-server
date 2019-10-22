@@ -10,36 +10,31 @@ describe('Farm', () => {
 
         app = require('../../engine/launcher').initalize();
         factory = require('../factory');
-        await global.database.truncate();
     });
 
     it('It should create farm with sucess', async () => {
-        const farm = {
-            name: 'test name farm',
-            harvestId: 1
-        };
-
-        await factory.create('harvest', { id: farm.harvestId });
+        const harvestDb = await factory.create('harvest');
 
         const response = await request(app)
             .post('/farm')
-            .send(farm);
+            .send({
+                name: 'test name farm',
+                harvestId: harvestDb.id
+            });
 
         expect(response.status).toBe(200);
         expect(response.body).toHaveProperty('id');
     });
 
-    it('It should receive error if request have invalid ', async () => {
-        const farm = {
-            name: '', // empty
-            harvestId: 1
-        };
-
-        await factory.create('harvest', { id: farm.harvestId });
+    it('It should receive error if request have name invalid ', async () => {
+        const harvestDb = await factory.create('harvest');
 
         const response = await request(app)
             .post('/farm')
-            .send(farm);
+            .send({
+                name: '',
+                harvestId: harvestDb.id
+            });
 
         expect(response.status).toBe(422);
         expect(response.body).toHaveProperty('errors');

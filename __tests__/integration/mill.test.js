@@ -9,7 +9,6 @@ describe('Mill', () => {
         await database.createConnection();
 
         app = require('../../engine/launcher').initalize();
-        await global.database.truncate();
     });
 
     it('It should create mill with sucess', async () => {

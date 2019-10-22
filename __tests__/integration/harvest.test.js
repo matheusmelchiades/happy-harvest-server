@@ -10,21 +10,18 @@ describe('Harvest', () => {
 
         app = require('../../engine/launcher').initalize();
         factory = require('../factory');
-        await global.database.truncate();
     });
 
     it('It should create harvest with sucess', async () => {
-        const harvest = {
-            startDate: '2019-01-01T02:00:00.000Z',
-            endDate: '2019-06-01T03:00:00.000Z',
-            millId: 1
-        };
-
-        await factory.create('mill', { id: harvest.millId });
+        const millDb = await factory.create('mill');
 
         const response = await request(app)
             .post('/harvest')
-            .send(harvest);
+            .send({
+                startDate: '2019-01-01T02:00:00.000Z',
+                endDate: '2019-06-01T03:00:00.000Z',
+                millId: millDb.id
+            });
 
         expect(response.status).toBe(200);
         expect(response.body).toHaveProperty('id');

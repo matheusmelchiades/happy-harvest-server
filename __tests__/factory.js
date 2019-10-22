@@ -13,7 +13,6 @@ const fieldmodel = require('../app/api/components/Field/model');
  * Factory MILL
  */
 factory.define('mill', millModel, {
-    id: faker.random.number(),
     name: faker.name.firstName()
 });
 
@@ -21,7 +20,6 @@ factory.define('mill', millModel, {
  * Factory HARVEST
  */
 factory.define('harvest', harvestModel, {
-    id: faker.random.number(),
     startDate: faker.date.past().toISOString(),
     endDate: faker.date.future().toISOString(),
     millId: faker.random.number()
@@ -31,7 +29,6 @@ factory.define('harvest', harvestModel, {
  * Factory FARM
  */
 factory.define('farm', farmModel, {
-    id: faker.random.number(),
     name: faker.name.firstName(),
     harvestId: faker.random.number()
 });
@@ -40,7 +37,6 @@ factory.define('farm', farmModel, {
  * Factory FIELD
  */
 factory.define('field', fieldmodel, {
-    id: faker.random.number(),
     latitude: faker.address.latitude(),
     longitude: faker.address.longitude(),
     farmId: faker.random.number()
