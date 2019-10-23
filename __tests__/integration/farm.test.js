@@ -14,13 +14,14 @@ describe('Farm', () => {
 
     it('It should create farm with sucess', async () => {
         const harvestDb = await factory.create('harvest');
+        const farm = {
+            name: 'test name farm',
+            harvestId: harvestDb.id
+        };
 
         const response = await request(app)
             .post('/farm')
-            .send({
-                name: 'test name farm',
-                harvestId: harvestDb.id
-            });
+            .send(farm);
 
         expect(response.status).toBe(200);
         expect(response.body).toHaveProperty('id');
@@ -28,13 +29,14 @@ describe('Farm', () => {
 
     it('It should receive error if request have name invalid ', async () => {
         const harvestDb = await factory.create('harvest');
+        const farm = {
+            name: '', // empty
+            harvestId: harvestDb.id
+        };
 
         const response = await request(app)
             .post('/farm')
-            .send({
-                name: '',
-                harvestId: harvestDb.id
-            });
+            .send(farm);
 
         expect(response.status).toBe(422);
         expect(response.body).toHaveProperty('errors');
@@ -42,6 +44,25 @@ describe('Farm', () => {
         response.body.errors.map(error => {
             expect(error).toHaveProperty('param');
             expect(error.param).toBe('name');
+        });
+    });
+
+    it('It should receive error if request have harvestId invalid ', async () => {
+        const farm = {
+            name: 'test name farm',
+            harvestId: 'HARVEST INVALID'
+        };
+
+        const response = await request(app)
+            .post('/farm')
+            .send(farm);
+
+        expect(response.status).toBe(422);
+        expect(response.body).toHaveProperty('errors');
+
+        response.body.errors.map(error => {
+            expect(error).toHaveProperty('param');
+            expect(error.param).toBe('harvestId');
         });
     });
 

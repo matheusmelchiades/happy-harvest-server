@@ -1,7 +1,22 @@
 const model = require('./model');
+const modelFarm = require('../Farm/model');
+const handlerErrors = require('../../../../helper/handlerErrors');
+const logger = require('../../../../engine/logger')();
 
-exports.findAll = async (req, res) => {
-    const fields = await model.findAll({ attributes: model.projection });
+exports.create = async (req, res) => {
+    try {
+        const { farmId, ...field } = req.body;
 
-    return res.send(fields);
+        const farmDb = await modelFarm.findOne({ where: { id: farmId } });
+
+        if (!farmDb) return res.boom.badData(`The field with id ${farmId} not exists`);
+
+        const fieldDb = await model.create({ ...field, farmId });
+
+        return res.json(fieldDb);
+    } catch (err) {
+        logger.error(err);
+
+        return res.boom.badImplementation(handlerErrors.create('field'));
+    }
 };

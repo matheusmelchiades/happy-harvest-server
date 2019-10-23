@@ -14,14 +14,15 @@ describe('Harvest', () => {
 
     it('It should create harvest with sucess', async () => {
         const millDb = await factory.create('mill');
+        const harvest = {
+            startDate: '2019-01-01T02:00:00.000Z',
+            endDate: '2019-06-01T03:00:00.000Z',
+            millId: millDb.id
+        };
 
         const response = await request(app)
             .post('/harvest')
-            .send({
-                startDate: '2019-01-01T02:00:00.000Z',
-                endDate: '2019-06-01T03:00:00.000Z',
-                millId: millDb.id
-            });
+            .send(harvest);
 
         expect(response.status).toBe(200);
         expect(response.body).toHaveProperty('id');
@@ -64,6 +65,26 @@ describe('Harvest', () => {
         response.body.errors.map(error => {
             expect(error).toHaveProperty('param');
             expect(error.param).toBe('endDate');
+        });
+    });
+
+    it('It should receive error if request have invalid millId', async () => {
+        const harvest = {
+            startDate: '2019-06-01T03:00:00.000Z',
+            endDate: '2019-06-01T03:00:00.000Z',
+            millId: 'INVALID MILLID'
+        };
+
+        const response = await request(app)
+            .post('/harvest')
+            .send(harvest);
+
+        expect(response.status).toBe(422);
+        expect(response.body).toHaveProperty('errors');
+
+        response.body.errors.map(error => {
+            expect(error).toHaveProperty('param');
+            expect(error.param).toBe('millId');
         });
     });
 

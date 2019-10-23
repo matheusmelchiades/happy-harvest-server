@@ -3,7 +3,8 @@ const DataTypes = global.database.dataTypes;
 const schema = {
     id: {
         type: DataTypes.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
     },
     latitude: DataTypes.FLOAT,
     longitude: DataTypes.FLOAT,
