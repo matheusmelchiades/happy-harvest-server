@@ -13,7 +13,9 @@ describe('Farm', () => {
     });
 
     it('It should create field with sucess', async () => {
-        const farmDb = await factory.create('farm');
+        const millDb = await factory.create('mill');
+        const harvestDb = await factory.create('harvest', { millId: millDb.id });
+        const farmDb = await factory.create('farm', { harvestId: harvestDb.id });
         const field = {
             latitude: 212.12112,
             longitude: -12.112352,

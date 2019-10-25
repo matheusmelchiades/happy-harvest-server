@@ -13,7 +13,8 @@ describe('Farm', () => {
     });
 
     it('It should create farm with sucess', async () => {
-        const harvestDb = await factory.create('harvest');
+        const millDb = await factory.create('mill');
+        const harvestDb = await factory.create('harvest', { millId: millDb.id });
         const farm = {
             name: 'test name farm',
             harvestId: harvestDb.id
@@ -28,7 +29,8 @@ describe('Farm', () => {
     });
 
     it('It should receive error if request have name invalid ', async () => {
-        const harvestDb = await factory.create('harvest');
+        const millDb = await factory.create('mill');
+        const harvestDb = await factory.create('harvest', { millId: millDb.id });
         const farm = {
             name: '', // empty
             harvestId: harvestDb.id
