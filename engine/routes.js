@@ -25,14 +25,15 @@ function loadRoutes() {
 }
 
 function validateMethod(method = '') {
-    return methodsPossible.includes(method.toUpperCase());
+    return methodsPossible.includes(method);
 }
 
-function validatePath(path = '') {
-    const includes = pathsAlreadyUsed.includes(path);
+function validatePath(path = '', method = '') {
+    const newPath = `${method}::${path}`;
+    const includes = pathsAlreadyUsed.includes(newPath);
 
     if (!includes && path.includes('/')) {
-        pathsAlreadyUsed.push(path);
+        pathsAlreadyUsed.push(newPath);
 
         return true;
     }
@@ -90,7 +91,7 @@ function validateRoute(route) {
 
         if (!validateMethod(route.method)) throw error;
 
-        if (!validatePath(route.path)) throw error;
+        if (!validatePath(route.path, route.method)) throw error;
 
         return true;
     } catch (err) {
