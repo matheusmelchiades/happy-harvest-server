@@ -6,12 +6,14 @@ module.exports = [
         method: 'POST',
         path: '/mill',
         handler: handler.create,
-        validations: [
-            check('name')
-                .isString()
-                .trim()
-                .not()
-                .isEmpty()
-        ]
+        validations: {
+            body: [
+                check('name')
+                    .isString()
+                    .trim()
+                    .not()
+                    .isEmpty()
+            ]
+        }
     }
 ];

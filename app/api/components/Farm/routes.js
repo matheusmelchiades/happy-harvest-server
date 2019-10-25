@@ -3,19 +3,21 @@ const { check } = require('express-validator');
 
 module.exports = [
     {
-        method: 'POSt',
+        method: 'POST',
         path: '/farm',
         handler: handler.create,
-        validations: [
-            check('name')
-                .isString()
-                .trim()
-                .not()
-                .isEmpty(),
-            check('harvestId')
-                .isInt()
-                .not()
-                .isEmpty()
-        ]
+        validations: {
+            body: [
+                check('name')
+                    .isString()
+                    .trim()
+                    .not()
+                    .isEmpty(),
+                check('harvestId')
+                    .isInt()
+                    .not()
+                    .isEmpty()
+            ]
+        }
     }
 ];

@@ -6,19 +6,21 @@ module.exports = [
         method: 'POST',
         path: '/field',
         handler: handler.create,
-        validations: [
-            check('latitude')
-                .isFloat()
-                .not()
-                .isEmpty(),
-            check('longitude')
-                .isFloat()
-                .not()
-                .isEmpty(),
-            check('farmId')
-                .isInt()
-                .not()
-                .isEmpty()
-        ]
+        validations: {
+            body: [
+                check('latitude')
+                    .isFloat()
+                    .not()
+                    .isEmpty(),
+                check('longitude')
+                    .isFloat()
+                    .not()
+                    .isEmpty(),
+                check('farmId')
+                    .isInt()
+                    .not()
+                    .isEmpty()
+            ]
+        }
     }
 ];

@@ -100,13 +100,21 @@ function validateRoute(route) {
     }
 }
 
+function formatValidations(validations) {
+    return Object.entries(validations)
+        .map(([key, value]) => (value.length ? value : null))
+        .filter(value => !!value)
+        .flat();
+}
+
 exports.load = app => {
     const routes = loadRoutes();
 
-    routes.forEach(({ method, path, handler, validations = [] }) => {
+    routes.forEach(({ method, path, handler, validations }) => {
         const methodFormated = method.toLowerCase();
 
-        if (validations.length) {
+        if (validations) {
+            validations = formatValidations(validations);
             validations = validateValidations(validations);
         }
 
