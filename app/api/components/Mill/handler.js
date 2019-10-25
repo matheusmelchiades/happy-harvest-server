@@ -13,3 +13,17 @@ module.exports.create = async (req, res) => {
         return res.boom.badImplementation(errors.create('mill'));
     }
 };
+
+module.exports.search = async (req, res) => {
+    try {
+        const { search } = req.query;
+
+        const millDb = await model.searchMill(search);
+
+        return res.json(millDb);
+    } catch (err) {
+        logger.error(err);
+
+        return res.boom.badImplementation('deu ruim aqui');
+    }
+};

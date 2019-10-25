@@ -15,5 +15,17 @@ module.exports = [
                     .isEmpty()
             ]
         }
+    },
+    {
+        method: 'GET',
+        path: '/mill',
+        handler: handler.search,
+        validations: {
+            query: [
+                check('search')
+                    .isString()
+                    .trim()
+            ]
+        }
     }
 ];
