@@ -13,7 +13,11 @@ module.exports = {
                 type: Sequelize.STRING
             },
             harvestId: {
-                type: Sequelize.INTEGER
+                type: Sequelize.INTEGER,
+                references: {
+                    model: 'harvests',
+                    key: 'id'
+                }
             }
         });
     },

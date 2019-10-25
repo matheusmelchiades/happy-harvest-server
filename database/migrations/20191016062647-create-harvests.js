@@ -16,7 +16,11 @@ module.exports = {
                 type: Sequelize.DATE
             },
             millId: {
-                type: Sequelize.INTEGER
+                type: Sequelize.INTEGER,
+                references: {
+                    model: 'mills',
+                    key: 'id'
+                }
             }
         });
     },

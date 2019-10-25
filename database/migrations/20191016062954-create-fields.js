@@ -16,7 +16,11 @@ module.exports = {
                 type: Sequelize.FLOAT
             },
             farmId: {
-                type: Sequelize.INTEGER
+                type: Sequelize.INTEGER,
+                references: {
+                    model: 'farms',
+                    key: 'id'
+                }
             }
         });
     },
