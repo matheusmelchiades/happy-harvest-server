@@ -30,7 +30,7 @@ class SequelizeHandler {
     truncate() {
         return Promise.all(
             Object.keys(this.models).map(key => {
-                return this.models[key].destroy({ truncate: true, force: true });
+                return this.models[key].destroy({ truncate: { cascade: true }, force: true });
             })
         );
     }

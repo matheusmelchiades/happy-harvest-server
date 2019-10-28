@@ -20,7 +20,8 @@ module.exports = {
                 references: {
                     model: 'farms',
                     key: 'id'
-                }
+                },
+                onDelete: 'CASCADE'
             }
         });
     },

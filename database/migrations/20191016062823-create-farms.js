@@ -17,7 +17,8 @@ module.exports = {
                 references: {
                     model: 'harvests',
                     key: 'id'
-                }
+                },
+                onDelete: 'CASCADE'
             }
         });
     },
