@@ -27,5 +27,22 @@ module.exports = [
                     .trim()
             ]
         }
+    },
+    {
+        method: 'GET',
+        path: '/mill/listing',
+        handler: handler.getListing,
+        validations: {
+            query: [
+                check('page')
+                    .not()
+                    .isEmpty()
+                    .toInt(),
+                check('rowsPerPage')
+                    .not()
+                    .isEmpty()
+                    .toInt()
+            ]
+        }
     }
 ];
