@@ -23,32 +23,30 @@ yarn start
 
 ## Architecture
 
-``` tree.md
-.
-├── [**\_\_tests\_\_**](./__tests__) => Module of application responsible for all test types.
-│   ├── **coverage** => Report of tests.
-│   ├── **integration** => Definition of integration testing scenarios.
-│   ├── **unit** => Definition of unit testing scenarios.
-│   └── **factory** => Definition of data model fakes to used in tests.
-├── [**app**] => Module of application where applies bussines logic, authentication, and services.
-├── [**api**] => Definition of components in yours respective routes, handlers and controllers.
-├── [**assets**] => Modulo da aplicação para medias, documents e arquivos staticos.
-├── [**config**] => Modulo da aplicação de configuração para plugins, rotas, serviços, banco de dados e autenticação.
-├── [**database**] => Modulo responsavel para gerenciamento do banco de dados.
-├── [**data**] => Definição de componentes e suas respectivas rotas, daos e controllers.
-├── [**migrations**] => Definição de componentes e suas respectivas rotas, daos e controllers.
-├── [**seeders**] => Definição de componentes e suas respectivas rotas, daos e controllers.
-├── [**engine**] => Módulos responsáveis pela configuração e inicialização da aplicação.
-├── [**database**] => Definição de componentes e suas respectivas rotas, daos e controllers.
-│-   Conexão com banco.
-│-   Configuração de logs.
-│-   Serviços SOAP.
-│-   Configuração do Swagger.
-├── [**helper**] => Módulos responsáveis pela configuração e inicialização da aplicação.
-├── [**docker-compose**] => Arquivo de inicialização.
-├── [**ecosystem.config**] => Arquivo de inicialização.
-└── [**server**] => Arquivo de inicialização.
-```
+-   **\_\_tests\_\_** => Module of application responsible for all test types.
+    -   **coverage** => Report of tests.
+    -   **integration** => Definition of integration testing scenarios.
+    -   **unit** => Definition of unit testing scenarios.
+    -   **factory** => Definition of data model fakes to used in tests.
+-   **app** => Module of application where applies bussines logic, authentication, and services.
+-   **api** => Definition of components in yours respective routes, handlers and controllers.
+-   **assets** => Module of application save medias, documents and statics files.
+-   **config** => Module of application to set configurations to plugins, routes, service, database and authentication.
+-   **database** => Modulo responsavel para gerenciamento do banco de dados.
+    -   **data** => Defintion of data to init application.
+    -   **migrations** => Definition of DDL Database and validations in level database.
+    -   **seeders** => Database's versioning definition.
+-   **engine** => Module respective by configuration and launch All application.
+    -   **database** => Definition of launcher database connections.
+        -   **handlers** => Responsible file by configurations handler of database, ex: sequelize.
+    -   Launch application.
+    -   Launch Logger.
+    -   Launch middlewares
+    -   Launch routes.
+-   **helper** => Responsible module by functions, algorithms and factorys used in all application.
+-   **docker-compose** => Responsible file by database machine.
+-   **ecosystem.config** => Responsible file by deploy's configurations.
+-   **server** => boot file.
 
 ## Components
 
@@ -57,10 +55,10 @@ Api's Architecture is divided in components, faciliting the maintenance of servi
 Your struct is composed by:
 
 -   **component**
-    -   **handler** => Definição das rotas que irão trabalhar encima deste componente.
-    -   **model** => Definição dos layouts (payloads) de entrada e saida de cada rota.
-    -   **routes** => Definição de todos os parâmetros de entradas disponiveis para as rotas deste componente.
-    -   **schema** => Definição de todos os parâmetros de resposta das rotas deste componente.
+    -   **handler** => Layout's definition(body, payload) of input and output in route.
+    -   **model** => Model definition to database access.
+    -   **routes** => Route definition is gateway to validate params of avaible input to routes.
+    -   **schema** => Layout's definition data Object to model access database.
 
 # TODO
 
