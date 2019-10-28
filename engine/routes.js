@@ -116,6 +116,8 @@ exports.load = app => {
         if (validations) {
             validations = formatValidations(validations);
             validations = validateValidations(validations);
+        } else {
+            validations = [];
         }
 
         Router[methodFormated](path, validations, handler);
