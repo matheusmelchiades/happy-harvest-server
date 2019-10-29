@@ -19,5 +19,22 @@ module.exports = [
                     .isEmpty()
             ]
         }
+    },
+    {
+        method: 'GET',
+        path: '/farm/listing',
+        handler: handler.getListing,
+        validations: {
+            query: [
+                check('page')
+                    .not()
+                    .isEmpty()
+                    .toInt(),
+                check('rowsPerPage')
+                    .not()
+                    .isEmpty()
+                    .toInt()
+            ]
+        }
     }
 ];
