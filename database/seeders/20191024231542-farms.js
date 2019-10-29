@@ -1,7 +1,9 @@
 const farms = require('../data/farms.json');
 
 module.exports = {
-    up: (queryInterface, Sequelize) => {
+    up: async (queryInterface, Sequelize) => {
+        await queryInterface.sequelize.query(`ALTER SEQUENCE farms_id_seq RESTART WITH ${farms.length + 1}`);
+
         return queryInterface.bulkInsert('farms', farms);
     },
 

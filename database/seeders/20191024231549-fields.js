@@ -1,7 +1,9 @@
 const fields = require('../data/fields.json');
 
 module.exports = {
-    up: (queryInterface, Sequelize) => {
+    up: async (queryInterface, Sequelize) => {
+        await queryInterface.sequelize.query(`ALTER SEQUENCE fields_id_seq RESTART WITH ${fields.length + 1}`);
+
         return queryInterface.bulkInsert('fields', fields);
     },
 

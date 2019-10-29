@@ -1,7 +1,9 @@
 const harvests = require('../data/harvests.json');
 
 module.exports = {
-    up: (queryInterface, Sequelize) => {
+    up: async (queryInterface, Sequelize) => {
+        await queryInterface.sequelize.query(`ALTER SEQUENCE harvests_id_seq RESTART WITH ${harvests.length + 1}`);
+
         return queryInterface.bulkInsert('harvests', harvests);
     },
 
