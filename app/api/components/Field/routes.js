@@ -22,5 +22,22 @@ module.exports = [
                     .isEmpty()
             ]
         }
+    },
+    {
+        method: 'GET',
+        path: '/field/listing',
+        handler: handler.getListing,
+        validations: {
+            query: [
+                check('page')
+                    .not()
+                    .isEmpty()
+                    .toInt(),
+                check('rowsPerPage')
+                    .not()
+                    .isEmpty()
+                    .toInt()
+            ]
+        }
     }
 ];

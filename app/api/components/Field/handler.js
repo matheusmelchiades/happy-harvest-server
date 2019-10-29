@@ -1,4 +1,5 @@
 const model = require('./model');
+const factory = require('../factory');
 const modelFarm = require('../Farm/model');
 const handlerErrors = require('../../../../helper/handlerErrors');
 const logger = require('../../../../engine/logger')();
@@ -18,5 +19,22 @@ exports.create = async (req, res) => {
         logger.error(err);
 
         return res.boom.badImplementation(handlerErrors.create('field'));
+    }
+};
+
+module.exports.getListing = async (req, res) => {
+    try {
+        const { page = 0, rowsPerPage = 5 } = req.query;
+
+        const fieldDb = await model.findAndCountAll({
+            limit: rowsPerPage,
+            offset: page * rowsPerPage
+        });
+
+        return res.json(factory.listing(fieldDb));
+    } catch (err) {
+        logger.error(err);
+
+        return res.boom.badImplementation('deu ruim aqui');
     }
 };
