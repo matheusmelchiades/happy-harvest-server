@@ -24,7 +24,8 @@ module.exports = [
             query: [
                 check('search')
                     .isString()
-                    .trim()
+                    .trim(),
+                check('limit').toInt()
             ]
         }
     },

@@ -15,8 +15,9 @@ model.hasMany(modelHarvests, { foreignKey: 'millId', as: 'harvests' });
 /**
  * CUSTOM FUNCTIONS
  */
-model.searchMill = (search = '', field = 'name') => {
+model.searchMill = ({ search = '', field = 'name', limit = 30 }) => {
     return model.findAll({
+        limit,
         where: {
             [field]: {
                 [db.operator.like]: `%${search}%`

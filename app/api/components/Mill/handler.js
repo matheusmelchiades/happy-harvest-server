@@ -1,5 +1,5 @@
 const model = require('./model');
-const factory = require('./factory');
+const factory = require('../factory');
 const errors = require('../../../../helper/handlerErrors');
 const logger = require('../../../../engine/logger')();
 
@@ -7,7 +7,7 @@ module.exports.create = async (req, res) => {
     try {
         const millDb = await model.create(req.body);
 
-        return res.json(millDb);
+        return res.json({ message: 'Mill created with success!', data: millDb });
     } catch (err) {
         logger.error(err);
 
@@ -17,9 +17,7 @@ module.exports.create = async (req, res) => {
 
 module.exports.search = async (req, res) => {
     try {
-        const { search } = req.query;
-
-        const millDb = await model.searchMill(search);
+        const millDb = await model.searchMill(req.query);
 
         return res.json(millDb);
     } catch (err) {
