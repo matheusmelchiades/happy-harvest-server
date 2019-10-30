@@ -36,5 +36,18 @@ module.exports = [
                     .toInt()
             ]
         }
+    },
+    {
+        method: 'GET',
+        path: '/farm',
+        handler: handler.search,
+        validations: {
+            query: [
+                check('search')
+                    .isString()
+                    .trim(),
+                check('limit').toInt()
+            ]
+        }
     }
 ];

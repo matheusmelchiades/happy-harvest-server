@@ -38,3 +38,15 @@ module.exports.getListing = async (req, res) => {
         return res.boom.badImplementation();
     }
 };
+
+module.exports.search = async (req, res) => {
+    try {
+        const farmsDb = await model.searchFarm(req.query);
+
+        return res.json(farmsDb);
+    } catch (err) {
+        logger.error(err);
+
+        return res.boom.badImplementation();
+    }
+};
