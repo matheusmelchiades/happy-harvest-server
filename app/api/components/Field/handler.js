@@ -14,7 +14,7 @@ exports.create = async (req, res) => {
 
         const fieldDb = await model.create({ ...field, farmId });
 
-        return res.json(fieldDb);
+        return res.json({ message: 'Harvest created with success!', data: fieldDb });
     } catch (err) {
         logger.error(err);
 
