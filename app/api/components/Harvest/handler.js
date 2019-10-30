@@ -35,7 +35,7 @@ module.exports.getListing = async (req, res) => {
     } catch (err) {
         logger.error(err);
 
-        return res.boom.badImplementation('deu ruim aqui');
+        return res.boom.badImplementation();
     }
 };
 
@@ -49,7 +49,7 @@ module.exports.getHarvestByMillId = async (req, res) => {
     } catch (err) {
         logger.error(err);
 
-        return res.boom.badImplementation('deu ruim aqui');
+        return res.boom.badImplementation();
     }
 };
 
@@ -61,6 +61,6 @@ module.exports.getHarvestsByDate = async (req, res) => {
     } catch (err) {
         logger.error(err);
 
-        return res.boom.badImplementation('deu ruim aqui');
+        return res.boom.badImplementation();
     }
 };
