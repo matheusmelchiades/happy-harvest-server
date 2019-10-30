@@ -12,4 +12,17 @@ model.getHarvestByMillId = millId => {
     });
 };
 
+model.getHarvestByDate = ({ startDate = '', endDate = '' }) => {
+    return model.findAll({
+        where: {
+            startDate: {
+                [db.operator.between]: [startDate, endDate]
+            },
+            endDate: {
+                [db.operator.between]: [startDate, endDate]
+            }
+        }
+    });
+};
+
 module.exports = model;

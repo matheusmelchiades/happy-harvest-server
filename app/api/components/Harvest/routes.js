@@ -54,5 +54,26 @@ module.exports = [
                     .toInt()
             ]
         }
+    },
+    {
+        method: 'GET',
+        path: '/harvest/date',
+        handler: handler.getHarvestsByDate,
+        validations: {
+            query: [
+                check('startDate')
+                    .not()
+                    .isEmpty()
+                    .isString()
+                    .isISO8601()
+                    .toDate(),
+                check('endDate')
+                    .not()
+                    .isEmpty()
+                    .isString()
+                    .isISO8601()
+                    .toDate()
+            ]
+        }
     }
 ];
