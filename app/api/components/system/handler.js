@@ -1,5 +1,5 @@
-const modelTablist = require('./toolbar/model');
 const modelToolbar = require('./toolbar/model');
+const modelTablist = require('./tablist/model');
 
 const logger = require('../../../../engine/logger')();
 
