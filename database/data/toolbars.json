@@ -1,0 +1,17 @@
+[
+    {
+        "field": "Map",
+        "icon": "map",
+        "path": "/map"
+    },
+    {
+        "field": "Listing",
+        "icon": "list",
+        "path": "/listing"
+    },
+    {
+        "field": "Plus",
+        "icon": "add",
+        "path": "/register"
+    }
+]

@@ -1,0 +1,18 @@
+[
+    {
+        "label": "Mills",
+        "path": "/mill"
+    },
+    {
+        "label": "Harvests",
+        "path": "/harvest"
+    },
+    {
+        "label": "Farms",
+        "path": "/farm"
+    },
+    {
+        "label": "Fields",
+        "path": "/field"
+    }
+]
