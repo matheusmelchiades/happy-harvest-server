@@ -29,7 +29,7 @@ exports.run = async () => {
 
         logger.info('#### FINALIZED LOAD MIDDLEWARES ####');
 
-        await app.listen(config.port);
+        await app.listen(config.port, config.hostname);
 
         logger.info('🌎 SERVER RUNNING');
         logger.info(`http://${config.hostname}:${config.port}`);
