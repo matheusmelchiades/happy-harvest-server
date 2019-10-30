@@ -8,7 +8,7 @@ module.exports = [
     },
     {
         method: 'GET',
-        path: '/system/tabListing',
+        path: '/system/tablist',
         handler: handler.getTablist
     }
 ];
