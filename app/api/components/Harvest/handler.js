@@ -38,3 +38,17 @@ module.exports.getListing = async (req, res) => {
         return res.boom.badImplementation('deu ruim aqui');
     }
 };
+
+module.exports.getHarvestByMillId = async (req, res) => {
+    try {
+        const { millId } = req.params;
+
+        const harvestsDb = await model.getHarvestByMillId(millId);
+
+        return res.json(harvestsDb);
+    } catch (err) {
+        logger.error(err);
+
+        return res.boom.badImplementation('deu ruim aqui');
+    }
+};

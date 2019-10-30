@@ -41,5 +41,18 @@ module.exports = [
                     .toInt()
             ]
         }
+    },
+    {
+        method: 'GET',
+        path: '/mill/:millId/harvest',
+        handler: handler.getHarvestByMillId,
+        validations: {
+            params: [
+                check('millId')
+                    .not()
+                    .isEmpty()
+                    .toInt()
+            ]
+        }
     }
 ];
