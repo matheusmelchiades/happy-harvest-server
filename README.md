@@ -8,12 +8,31 @@ Application server | Node.js | Express.js
 -   [Yarn](https://yarnpkg.com/lang/en/) 1.17.x
 -   [Express](http://expressjs.com/) 4.17.x
 -   [Jest](https://jestjs.io/) 24.9.x
+-   [Docker](https://www.docker.com) 19.X
 
 ## Initialization
-
 To get started the application server execute the commands below in the project.
 
+**Docker**
+
+To get started with docker, you have to follow some steps.
+1. Rename [env_sample](https://github.com/matheusmelchiades/happy-harvest-server/blob/master/env_sample) file to ".env"
+2. Fill in the configurations you want on file.
+3. Run container.
+``` bash
+docker-compose up -d --build
+```
+
+**SEQUELIZE**
+
+To execution with sequelize, you have to init migrations and seeders
+``` bash 
+yarn run sequelize db:migrate
+yarn run sequelize db:seed:all
+```
+
 **YARN**
+
 To execution with yarn don't forget of config the environment, NODE_ENV = development | homologation | production | test. (default: development)
 
 ```bash
@@ -84,9 +103,9 @@ Your struct is composed by:
 -   [x] create Harvest
 -   [x] create Farm
 -   [x] create Field
--   [ ] filter by name to mill
--   [ ] filter harvest startDate
--   [ ] filter harvest endDate
--   [ ] filter id and name farm
--   [ ] filter id field
--   [ ] create police to routes check fields
+-   [x] filter by name to mill
+-   [x] filter harvest startDate
+-   [x] filter harvest endDate
+-   [x] filter id and name farm
+-   [x] filter id field
+-   [x] create police to routes check fields
