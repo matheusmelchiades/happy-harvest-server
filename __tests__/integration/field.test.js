@@ -10,14 +10,13 @@ describe('Field', () => {
 
         app = require('../../engine/launcher').initalize();
         factory = require('../factory');
-
-        await global.database.truncate();
     });
 
     it('It should create field with sucess', async () => {
         const millDb = await factory.create('mill');
         const harvestDb = await factory.create('harvest', { millId: millDb.id });
         const farmDb = await factory.create('farm', { harvestId: harvestDb.id });
+
         const field = {
             latitude: 212.12112,
             longitude: -12.112352,
