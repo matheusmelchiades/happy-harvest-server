@@ -11,9 +11,7 @@ describe('Mill', () => {
 
         app = require('../../engine/launcher').initalize();
         factory = require('../factory');
-    });
 
-    beforeEach(async () => {
         await global.database.truncate();
     });
 
@@ -25,6 +23,8 @@ describe('Mill', () => {
             .send(mill);
 
         expect(response.status).toBe(200);
+        expect(response.body).toHaveProperty('message');
+        expect(response.body).toHaveProperty('data');
     });
 
     it('It should on create receive id of mill created', async () => {
@@ -35,8 +35,8 @@ describe('Mill', () => {
             .send(mill);
 
         expect(response.status).toBe(200);
-        expect(response.body).toHaveProperty('id');
-        expect(response.body).toHaveProperty('name');
+        expect(response.body.data).toHaveProperty('id');
+        expect(response.body.data).toHaveProperty('name');
     });
 
     it('It should receive error if send request invalid', async () => {
@@ -51,7 +51,7 @@ describe('Mill', () => {
         expect(response.body.message).toBe(handlerErrors.invalidParam());
     });
 
-    it('It should return projection of Listing', async () => {
+    it('It should return projection of mill Listing', async () => {
         const params = { page: 0, rowsPerPage: 5 };
 
         const response = await request(app)
@@ -65,7 +65,7 @@ describe('Mill', () => {
     });
 
     it('It should return data of Listing', async () => {
-        const millDb = await factory.createMany('mill', 5);
+        const millsDb = await factory.createMany('mill', 5);
         const params = { page: 0, rowsPerPage: 5 };
 
         const response = await request(app)
@@ -76,9 +76,12 @@ describe('Mill', () => {
         expect(response.body).toHaveProperty('count');
         expect(response.body).toHaveProperty('headers');
         expect(response.body).toHaveProperty('rows');
-        expect(response.body.count).toBe(millDb.length);
-        expect(response.body.headers).toEqual(expect.arrayContaining(['id', 'name']));
-        expect(response.body.rows.length).toBe(millDb.length);
+        expect(response.body.count).toBeGreaterThanOrEqual(millsDb.length);
+        expect(response.body.rows.length).toBe(millsDb.length);
+        response.body.headers.map(header => {
+            expect(header).toHaveProperty('name');
+            expect(header).toHaveProperty('type');
+        });
     });
 
     it('It should receive error if send query request invalid', async () => {
@@ -91,5 +94,18 @@ describe('Mill', () => {
         expect(response.status).toBe(422);
         expect(response.body).toHaveProperty('message');
         expect(response.body.message).toBe(handlerErrors.invalidParam());
+    });
+
+    it('It should return data with input search by params request', async () => {
+        const millDb = await factory.create('mill', { name: 'testingSearch' });
+        const params = { search: 'testingSearch' };
+
+        const response = await request(app)
+            .get('/mill')
+            .query(params);
+
+        expect(response.status).toBe(200);
+        expect(response.body.length).toBeGreaterThan(0);
+        expect(response.body[0].name).toBe(millDb.name);
     });
 });

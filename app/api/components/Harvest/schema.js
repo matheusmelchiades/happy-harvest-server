@@ -4,7 +4,8 @@ const schema = {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
+        allowNull: false
     },
     startDate: DataTypes.DATE,
     endDate: DataTypes.DATE,

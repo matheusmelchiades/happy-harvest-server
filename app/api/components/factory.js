@@ -1,7 +1,7 @@
 function buildHeaders(data) {
-    const [firstItem] = data.rows;
+    const [firstItem = {}] = data.rows;
 
-    return Object.keys(firstItem.dataValues).map(name => {
+    return Object.keys(firstItem.dataValues || {}).map(name => {
         const attibutes = firstItem.rawAttributes;
         const type = attibutes[name].type.constructor.name.toLowerCase();
 

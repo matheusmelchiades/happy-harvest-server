@@ -5,11 +5,15 @@ describe('Farm', () => {
     let app;
     let factory;
 
-    beforeAll(async () => {
+    beforeAll(async next => {
         await database.createConnection();
 
         app = require('../../engine/launcher').initalize();
         factory = require('../factory');
+
+        await global.database.truncate();
+
+        next();
     });
 
     it('It should create farm with sucess', async () => {
@@ -25,7 +29,9 @@ describe('Farm', () => {
             .send(farm);
 
         expect(response.status).toBe(200);
-        expect(response.body).toHaveProperty('id');
+        expect(response.body).toHaveProperty('message');
+        expect(response.body).toHaveProperty('data');
+        expect(response.body.data).toHaveProperty('id');
     });
 
     it('It should receive error if request have name invalid ', async () => {

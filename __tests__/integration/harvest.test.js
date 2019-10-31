@@ -4,16 +4,20 @@ const database = require('../../engine/database/dbfactory');
 describe('Harvest', () => {
     let app;
     let factory;
+    let millDb;
 
     beforeAll(async () => {
         await database.createConnection();
 
         app = require('../../engine/launcher').initalize();
         factory = require('../factory');
+
+        await global.database.truncate();
+
+        millDb = await factory.create('mill');
     });
 
     it('It should create harvest with sucess', async () => {
-        const millDb = await factory.create('mill');
         const harvest = {
             startDate: '2019-01-01T02:00:00.000Z',
             endDate: '2019-06-01T03:00:00.000Z',
@@ -25,7 +29,9 @@ describe('Harvest', () => {
             .send(harvest);
 
         expect(response.status).toBe(200);
-        expect(response.body).toHaveProperty('id');
+        expect(response.body).toHaveProperty('message');
+        expect(response.body).toHaveProperty('data');
+        expect(response.body.data).toHaveProperty('id');
     });
 
     it('It should receive error if request have invalid startDate', async () => {

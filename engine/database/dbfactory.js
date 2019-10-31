@@ -18,7 +18,7 @@ module.exports.createConnection = async () => {
 
         global.database = connection;
     } catch (err) {
-        console.log(err.message);
+        logger.error(err.message);
         connection.close();
         process.exit(0);
     }

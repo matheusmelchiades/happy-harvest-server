@@ -7,7 +7,9 @@ const { factory } = require('factory-girl');
 const millModel = require('../app/api/components/Mill/model');
 const harvestModel = require('../app/api/components/Harvest/model');
 const farmModel = require('../app/api/components/Farm/model');
-const fieldmodel = require('../app/api/components/Field/model');
+const fieldModel = require('../app/api/components/Field/model');
+const toolbarModel = require('../app/api/components/system/toolbar/model');
+const tablistModel = require('../app/api/components/system/tablist/model');
 
 /**
  * Factory MILL
@@ -36,10 +38,27 @@ factory.define('farm', farmModel, {
 /**
  * Factory FIELD
  */
-factory.define('field', fieldmodel, {
+factory.define('field', fieldModel, {
     latitude: faker.address.latitude(),
     longitude: faker.address.longitude(),
     farmId: faker.random.number()
+});
+
+/**
+ * Factory TOOLBARS
+ */
+factory.define('toolbar', toolbarModel, {
+    field: faker.lorem.word(),
+    icon: faker.lorem.word(),
+    path: `/${faker.lorem.word()}`
+});
+
+/**
+ * Factory TABLIST
+ */
+factory.define('tablist', tablistModel, {
+    label: faker.lorem.word(),
+    path: `/${faker.lorem.word()}`
 });
 
 module.exports = factory;

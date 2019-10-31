@@ -1,7 +1,7 @@
 const request = require('supertest');
 const database = require('../../engine/database/dbfactory');
 
-describe('Farm', () => {
+describe('Field', () => {
     let app;
     let factory;
 
@@ -10,6 +10,8 @@ describe('Farm', () => {
 
         app = require('../../engine/launcher').initalize();
         factory = require('../factory');
+
+        await global.database.truncate();
     });
 
     it('It should create field with sucess', async () => {
@@ -27,7 +29,9 @@ describe('Farm', () => {
             .send(field);
 
         expect(response.status).toBe(200);
-        expect(response.body).toHaveProperty('id');
+        expect(response.body).toHaveProperty('message');
+        expect(response.body).toHaveProperty('data');
+        expect(response.body.data).toHaveProperty('id');
     });
 
     it('It should receive error if request have invalid latitude', async () => {

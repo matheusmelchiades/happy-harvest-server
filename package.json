@@ -8,7 +8,10 @@
     "scripts": {
         "dev": "yarn nodemon server.js",
         "start": "node server.js",
-        "test": "echo \"passs\""
+        "pretest": "rm -rf ./__tests__/*.sqlite && NODE_ENV=test sequelize db:migrate",
+        "test": "jest",
+        "posttest": "NODE_ENV=test sequelize db:migrate:undo:all",
+        "lint": "eslint --fix ."
     },
     "engines": {
         "node": "12.x",
