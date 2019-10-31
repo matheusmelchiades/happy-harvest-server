@@ -12,21 +12,18 @@ describe('Field', () => {
         factory = require('../factory');
     });
 
-    it('It should create field with sucess', async () => {
+    it('It should create field with success', async () => {
         const millDb = await factory.create('mill');
         const harvestDb = await factory.create('harvest', { millId: millDb.id });
         const farmDb = await factory.create('farm', { harvestId: harvestDb.id });
-
         const field = {
             latitude: 212.12112,
             longitude: -12.112352,
             farmId: farmDb.id
         };
-
         const response = await request(app)
             .post('/field')
             .send(field);
-
         expect(response.status).toBe(200);
         expect(response.body).toHaveProperty('message');
         expect(response.body).toHaveProperty('data');
@@ -106,5 +103,25 @@ describe('Field', () => {
 
         expect(response.status).toBe(422);
         expect(response.body).toHaveProperty('message');
+    });
+
+    it('It should return data of Field Listing', async () => {
+        const fieldsDb = await factory.createMany('field', 5);
+        const params = { page: 0, rowsPerPage: 5 };
+
+        const response = await request(app)
+            .get('/field/listing')
+            .query(params);
+
+        expect(response.status).toBe(200);
+        expect(response.body).toHaveProperty('count');
+        expect(response.body).toHaveProperty('headers');
+        expect(response.body).toHaveProperty('rows');
+        expect(response.body.count).toBeGreaterThanOrEqual(fieldsDb.length);
+        expect(response.body.rows.length).toBe(fieldsDb.length);
+        response.body.headers.map(header => {
+            expect(header).toHaveProperty('name');
+            expect(header).toHaveProperty('type');
+        });
     });
 });

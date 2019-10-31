@@ -11,7 +11,9 @@ describe('Mill', () => {
 
         app = require('../../engine/launcher').initalize();
         factory = require('../factory');
+    });
 
+    beforeEach(async () => {
         await global.database.truncate();
     });
 
